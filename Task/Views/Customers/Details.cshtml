@@ -1,0 +1,36 @@
+﻿@model Task.Models.Customer
+
+@{
+    ViewBag.Title = "Details";
+    Layout = null;
+
+}
+
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+</button>
+<h2>Details</h2>
+<hr />
+<div>
+    <div class="row">
+        <div class="col-xs-12">
+            <strong>
+                @Html.DisplayNameFor(model => model.Name)
+            </strong>:
+            @Html.DisplayFor(model => model.Name)
+        </div>
+        <div class="col-xs-12">
+            <strong>
+                @Html.DisplayNameFor(model => model.Address)
+            </strong>:
+            @Html.DisplayFor(model => model.Address)
+        </div>
+
+    </div>
+    <br />
+</div>
+<p>
+    <button type="button" class="btn btn-light">
+        @Html.ActionLink("Back to List", "Index")
+    </button>
+</p>

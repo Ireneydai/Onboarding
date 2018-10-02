@@ -1,0 +1,108 @@
+﻿@model IEnumerable<Task.Models.Store>
+
+    @{
+    ViewBag.Title = "Index";
+    }
+
+<br />
+    <h2>Store</h2>
+    <br />
+
+    <a class="createStore btn btn-success" href="#exampleModalLong" data-toggle="modal">
+        <i class="fas fa-plus-square"></i>Add New Store
+    </a>
+
+    <hr />
+    <div class="row">
+        <div class="col-sm-2">
+            <strong>@Html.DisplayNameFor(model => model.Name)</strong>
+        </div>
+        <div class="col-sm-4">
+            <strong>@Html.DisplayNameFor(model => model.Address)</strong>
+        </div>
+        <div class="col-sm-2">
+            <strong>Edit</strong>
+        </div>
+        <div class="col-sm-2">
+            <strong>View</strong>
+        </div>
+        <div class="col-sm-2">
+            <strong>Delete</strong>
+        </div>
+    </div>
+    <hr />
+
+    @foreach (var item in Model)
+    {
+    <div class="row">
+        <div class="col-sm-2">
+            @Html.DisplayFor(modelItem => item.Name)
+        </div>
+        <div class="col-sm-4">
+            @Html.DisplayFor(modelItem => item.Address)
+        </div>
+        <div class="col-sm-2">
+            <a class="editStore btn btn-warning" href="#exampleModalLong" data-toggle="modal" data-id="@item.ID">
+                <i class="fas fa-edit"></i>Edit
+            </a>
+        </div>
+        <div class="col-sm-2">
+            <a class="storeDetail btn btn-info" href="#exampleModalLong" data-toggle="modal" data-id="@item.ID">
+                <i class="fas fa-info-circle"></i>Details
+            </a>
+        </div>
+        <div class="col-sm-2">
+            <a class="storeDelete btn btn-danger" href="#exampleModalLong" data-toggle="modal" data-id="@item.ID">
+                <i class="fas fa-trash-alt"></i>Delete
+            </a>
+        </div>
+    </div>
+    <hr />
+
+    }
+
+
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <div id="storeModel"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @section scripts{
+    <script>
+        $(".createStore").click(function (event) {
+            $("#storeModel").load("/Stores/Create/")
+        });
+
+        $(document).ready(function () {
+
+            $(".editStore").click(function () {
+                //debugger;
+                $("#storeModel").load("/Stores/Edit/" + $(this).attr("data-id"));
+            });
+        });
+
+        $(document).ready(function () {
+
+            $(".storeDetail").click(function () {
+                //debugger;
+                $("#storeModel").load("/Stores/Details/" + $(this).attr("data-id"));
+            });
+        });
+
+        $(document).ready(function () {
+
+            $(".storeDelete").click(function () {
+                //debugger;
+                $("#storeModel").load("/Stores/Delete/" + $(this).attr("data-id"));
+            });
+        });
+
+
+    </script>
+    }

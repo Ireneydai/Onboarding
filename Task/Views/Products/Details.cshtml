@@ -1,0 +1,37 @@
+﻿@model Task.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+    Layout = null;
+
+}
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+</button>
+<h2>Details</h2>
+<hr />
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <button type="button" class="btn btn-light">
+        @Html.ActionLink("Back to List", "Index")
+    </button>
+</p>

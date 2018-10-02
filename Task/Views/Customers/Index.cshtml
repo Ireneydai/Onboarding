@@ -1,0 +1,106 @@
+﻿@model IEnumerable<Task.Models.Customer>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<br />
+<h2>Customer</h2>
+<br />
+
+<a  class="createCustomer btn btn-success" href="#exampleModalLong" data-toggle="modal"> 
+    <i class="fas fa-user-plus"></i>Add New Customer </a>
+
+<hr />
+<div class="row">
+    <div class="col-sm-2">
+        <strong>@Html.DisplayNameFor(model => model.Name)</strong>
+    </div>
+    <div class="col-sm-4">
+        <strong>@Html.DisplayNameFor(model => model.Address)</strong>
+    </div>
+    <div class="col-sm-2">
+        <strong>Edit</strong>
+    </div>
+    <div class="col-sm-2">
+        <strong>View</strong>
+    </div>
+    <div class="col-sm-2">
+        <strong>Delete</strong>
+    </div>
+</div>
+<hr />
+
+@foreach (var item in Model)
+{
+<div class="row">
+    <div class="col-sm-2">
+        @Html.DisplayFor(modelItem => item.Name)
+    </div>
+    <div class="col-sm-4">
+        @Html.DisplayFor(modelItem => item.Address)
+    </div>
+    <div class="col-sm-2">
+        <a class="editCustomer btn btn-warning" href="#exampleModalLong" data-toggle="modal" data-id="@item.ID">
+            <i class="fas fa-edit"></i>Edit
+        </a>
+    </div>
+    <div class="col-sm-2">
+        <a  class="customerDetail btn btn-info" href="#exampleModalLong" data-toggle="modal" data-id="@item.ID">
+            <i class="fas fa-info-circle"></i>Details
+        </a>
+    </div>
+    <div class="col-sm-2">
+        <a  class="customerDelete btn btn-danger" href="#exampleModalLong" data-toggle="modal" data-id="@item.ID">
+            <i class="fas fa-trash-alt"></i>Delete
+        </a>    </div>
+</div>
+    <hr />
+
+}
+
+
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <div id="customerModel"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $(".createCustomer").click(function (event) {
+            $("#customerModel").load("/Customers/Create/")
+        });
+
+        $(document).ready(function () {
+
+            $(".editCustomer").click(function () {
+                //debugger;
+                $("#customerModel").load("/Customers/Edit/" + $(this).attr("data-id"));
+            });
+        });
+
+        $(document).ready(function () {
+
+            $(".customerDetail").click(function () {
+                //debugger;
+                $("#customerModel").load("/Customers/Details/" + $(this).attr("data-id"));
+            });
+        });
+
+        $(document).ready(function () {
+
+            $(".customerDelete").click(function () {
+                //debugger;
+                $("#customerModel").load("/Customers/Delete/" + $(this).attr("data-id"));
+            });
+        });
+
+
+    </script>
+}

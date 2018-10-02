@@ -1,0 +1,94 @@
+﻿@model IEnumerable<Task.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<br />
+
+<h2>Product</h2>
+<br />
+
+<a class="createCustomer btn btn-success" id="createProduct" href="#exampleModalLong" data-toggle="modal">
+    <i class="fas fa-plus"></i>Creat New Product
+</a>
+
+<hr />
+
+<div class="row">
+    <div class="col-sm-4">
+        <strong>@Html.DisplayNameFor(model => model.Name)</strong>
+    </div>
+    <div class="col-sm-4">
+        <strong>@Html.DisplayNameFor(model => model.Price)</strong>
+    </div>
+</div>
+<hr />
+
+@foreach (var item in Model)
+{
+    <div class="row">
+        <div class="col-sm-4">
+            @Html.DisplayFor(modelItem => item.Name)
+        </div>
+        <div class="col-sm-4">
+            @Html.DisplayFor(modelItem => item.Price)
+        </div>
+        <div class="col-sm-4">
+            <a class="editProduct btn btn-warning" href="#exampleModalLong" data-toggle="modal" data-id="@item.ID"> 
+                <i class="fas fa-edit"></i>Edit </a>
+            <a class="productDetail btn btn-info" href="#exampleModalLong" data-toggle="modal" data-id="@item.ID"> 
+                <i class="fas fa-info-circle"></i>Details </a>
+            <a class="productDelete btn btn-danger" href="#exampleModalLong" data-toggle="modal" data-id="@item.ID"> 
+                <i class="fas fa-trash-alt"></i>Delete </a>
+        </div>
+    </div>
+    <hr />
+
+}
+
+
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            
+            <div class="modal-body">
+                <div id="createProductModel"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $("#createProduct").click(function (event) {
+            $("#createProductModel").load("/Products/Create/")
+        });
+
+        $(document).ready(function () {
+            
+            $(".editProduct").click(function () {
+                //debugger;
+                $("#createProductModel").load("/Products/Edit/" + $(this).attr("data-id"));
+            });
+        });
+
+        $(document).ready(function () {
+
+            $(".productDetail").click(function () {
+                //debugger;
+                $("#createProductModel").load("/Products/Details/" + $(this).attr("data-id"));
+            });
+        });
+
+        $(document).ready(function () {
+
+            $(".productDelete").click(function () {
+                //debugger;
+                $("#createProductModel").load("/Products/Delete/" + $(this).attr("data-id"));
+            });
+        });
+
+
+    </script>
+}
