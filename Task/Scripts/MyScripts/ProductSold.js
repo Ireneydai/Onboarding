@@ -1,6 +1,6 @@
 ﻿function ProductSold(data) {
     var self = this;
-    self.ID = data.ID;
+    self.ID = data.Id;
     self.Customer = ko.observable(data.Customer);
     self.CustomerId = ko.observable(data.CustomerId);
     self.Store = ko.observable(data.Store);
@@ -75,6 +75,7 @@ function ViewModel() {
     };
 
     self.Update = function (data) {
+        //debugger;
         var SaleId = data.ID;
         var CustomerId = self.SelectedCustomer().ID;
         var ProductId = self.SelectedProduct().ID;
@@ -90,7 +91,7 @@ function ViewModel() {
                 location.reload();
             }
         });
-    x};
+    };
 
     self.Delete = function (data) {
         var SaleId = data.ID;
@@ -114,6 +115,7 @@ function ViewModel() {
     getStores();
 
     function getSales() {
+
         $.ajax({
             url: '/ProductSolds/List',
             type: 'GET',

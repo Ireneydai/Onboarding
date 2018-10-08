@@ -62,21 +62,21 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Select Customer</label>
-                        <select class="form-control" data-bind="options : $parent.Customers, optionsText : 'Name', value :$parent.SelectedCustomer"></select>
+                        <select class="form-control" data-bind="options : $parent.Customers, optionsText : 'cusName', value :$parent.SelectedCustomer"></select>
                     </div>
                     <div class="form-group">
                         <label>Select Product</label>
-                        <select class="form-control" data-bind="options : $parent.Products, optionsText : 'Name', value : $parent.SelectedProduct"></select>
+                        <select class="form-control" data-bind="options : $parent.Products, optionsText : 'proName', value : $parent.SelectedProduct"></select>
                     </div>
                     <div class="form-group">
                         <label>Select Store</label>
-                        <select class="form-control" data-bind="options : $parent.Stores, optionsText : 'Name', value : $parent.SelectedStore"></select>
+                        <select class="form-control" data-bind="options : $parent.Stores, optionsText : 'stoName', value : $parent.SelectedStore"></select>
                     </div>
                     <div class="form-group">
                         <label>Date Sold</label>
-                        <input data-bind="value: $parent.DateSold, valueUpdate: 'afterkeydown'" id="datesold" type="text" class="form-control" placeholder="YYYY-MM-DD">
+                        <input data-bind="value: $parent.DateSold, valueUpdate: 'afterkeydown', optionText:'dateSold'" id="datesold" type="date" class="form-control" placeholder="YYYY-MM-DD">
                     </div>
-                </div>
+                  </div>
                 <div class="modal-footer">
                     <button id="btnSave" type="button" class="btn btn-primary" data-dismiss="modal" data-bind="click : $root.Save">Save</button>
                     <button type="button" data-bind="click: $root.closePage1" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -109,6 +109,9 @@
                     <div class="form-group">
                         <label>Date Sold</label>
                         <input data-bind="value: $parent.DateSold, valueUpdate: 'afterkeydown',optionsText : 'Name'" id="datesold" type="text" class="form-control">
+                    </div>
+                    <div hidden>
+                        <input data-bind="value: $parent.ID"/>
                     </div>
                 </div>
                 <div class="modal-footer">
